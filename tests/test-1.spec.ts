@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  const randomPart = Math.random().toString(36).substring(2, 12);
+  const email = `testnewth${randomPart}@toonhub.com`;
+  await page.goto('https://www.facebook.com/flx/warn/?u=https%3A%2F%2Ftoon-hub.com%2Fcomics%2Fneighbors-curse%2Fepisode-1%2F%3Ffbclid%3DIwZXh0bgNhZW0CMTEAYnJpZBExYkdKcFlUZDFoblBBYnZFM3NydGMGYXBwX2lkEDIyMjAzOTE3ODgyMDA4OTIAAR6VyYAMGz5DtMkIQ-BvtZzPsn2mBHLchrAbcHtnRu9h3N6MgNouCeDrb7T-nA_aem_P0ruqAgY6GIwngmaVrQeUg&h=AUAAvIOR-VveGxSzYSpx9q79Sa4vLp103Ehd6ZX6rmGQmJtgjd4N8WCyMWfc5N4uv0GtfX3i4pjCHjqg-ao0kGqfIhruvkBFcesxGQw9UXanGtLrfT7MIPqKWeIDHZHu05bZx2XhAZby47YmcX1gk5b_tyNswFNqJ3NpTI3gvflcIh0i33XMiU6kxnqtOE-4cq8NOV1c-B-AQQZ1EZ8xYxyePRgkbRoksS_HOoT5QRAF8fZ6Z1rN7mdDQjFz_T9B');
+  await page.getByRole('button', { name: 'Follow link' }).click();
+  await page.getByTestId('age-gate-confirm').click();
+  await page.getByTestId('cookie-accept-all').click();
+  await page.getByRole('link', { name: 'Start reading' }).click();
+  await page.getByRole('img', { name: 'Neighbor\'s Curse - Episode' }).first().click();
+  await page.waitForTimeout(2000);
+  await page.getByRole('img', { name: 'Neighbor\'s Curse - Episode' }).first().click();
+  await page.getByTestId('reader-next').click();
+  await page.getByTestId('auth-email-input').click();
+  await page.getByTestId('auth-email-input').fill(email);
+  await page.getByTestId('auth-email-input').press('Tab');
+  await page.getByTestId('auth-continue-button').click();
+  await page.getByRole('textbox', { name: 'Your password' }).click();
+  await page.getByRole('textbox', { name: 'Your password' }).fill('1');
+  await page.waitForTimeout(2000);
+  await page.locator('//button[@data-testid="auth-create-account-button"]').click();
+  await page.locator('.SubscriptionVIPItem-module-scss-module__GFxAGq__product-card__circle').first().click();
+  await page.locator('label:nth-child(3) > .SubscriptionVIPItem-module-scss-module__GFxAGq__subscription__card_content > .SubscriptionVIPItem-module-scss-module__GFxAGq__product-card__left > .SubscriptionVIPItem-module-scss-module__GFxAGq__product-card__circle').click();
+  await page.locator('.SubscriptionVIPItem-module-scss-module__GFxAGq__subscription__card_content.SubscriptionVIPItem-module-scss-module__GFxAGq__sale > .SubscriptionVIPItem-module-scss-module__GFxAGq__product-card__left > .SubscriptionVIPItem-module-scss-module__GFxAGq__product-card__circle').first().click();
+  await page.getByTestId('paywall-continue-button').click();
+  await page.locator('iframe[name="solid-payment-form-iframe"]').contentFrame().getByRole('textbox', { name: 'Credit Card Number' }).click();
+  await page.locator('iframe[name="solid-payment-form-iframe"]').contentFrame().getByRole('textbox', { name: 'Expiration Date' }).click();
+  await page.locator('iframe[name="solid-payment-form-iframe"]').contentFrame().getByRole('textbox', { name: 'CVV' }).click();
+  await page.locator('iframe[name="solid-payment-form-iframe"]').contentFrame().getByTestId('submit-button').click();
+  await page.close();
+});
