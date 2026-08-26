@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const ci = !!(globalThis as typeof globalThis & {
+  process?: { env?: { CI?: string } };
+}).process?.env?.CI;
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
