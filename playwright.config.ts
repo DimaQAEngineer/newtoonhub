@@ -1,9 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const ci = Boolean(
-  (globalThis as typeof globalThis & { process?: { env?: { CI?: string } } }).process?.env?.CI,
-);
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -16,7 +12,7 @@ const ci = Boolean(
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: './tests/',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
