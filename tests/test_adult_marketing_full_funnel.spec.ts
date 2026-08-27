@@ -11,7 +11,7 @@ test('test', async ({ page }) => {
   await page.locator('//img[@loading="eager"]').first().click();
   await page.waitForTimeout(2000);
   await page.locator('//img[@loading="eager"]').first().click();
-  await page.getByTestId('reader-next').click();
+  await page.getByRole('link', { name: 'Start reading' }).last().click();
   await page.getByTestId('auth-email-input').click();
   await page.getByTestId('auth-email-input').fill(email);
   await page.getByTestId('auth-email-input').press('Tab');
@@ -72,6 +72,7 @@ test('test2', async ({ page }) => {
   await page.getByRole('link', { name: 'Start reading' }).click();
   await page.locator('//img[@loading="eager"]').first().click();
   await page.waitForTimeout(2000);
+  await page.locator('//img[@loading="eager"]').first().click();
   await page.locator('//img[@loading="eager"]').first().click();
   await page.getByTestId('reader-next').click();
   await page.getByTestId('auth-email-input').click();
